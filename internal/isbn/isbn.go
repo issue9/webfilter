@@ -1,37 +1,20 @@
 // SPDX-License-Identifier: MIT
 
-package validator
+package isbn
 
 import "bytes"
 
-// ISBN 判断是否为合法的 ISBN 串号
-//
-// 可以同时判断 ISBN10 和 ISBN13
-//
-// 有关 ISBN 的算法及其它相关内容，可参照 http://zh.wikipedia.org/wiki/%E5%9B%BD%E9%99%85%E6%A0%87%E5%87%86%E4%B9%A6%E5%8F%B7
-func ISBN(val any) bool {
-	var result []byte
-
-	switch v := val.(type) {
-	case []byte:
-		result = v
-	case []rune:
-		result = []byte(string(v))
-	case string:
-		result = []byte(v)
-	default:
-		return false
+// IsValid 判断是否为合法的 ISBN10 和 ISBN13 串号
+func IsValid(val []byte) bool {
+	if bytes.IndexByte(val, '-') > -1 {
+		val = eraseMinus(val)
 	}
 
-	if bytes.IndexByte(result, '-') > -1 {
-		result = eraseMinus(result)
-	}
-
-	switch len(result) {
+	switch len(val) {
 	case 10:
-		return isISBN10(result)
+		return isISBN10(val)
 	case 13:
-		return isISBN13(result)
+		return isISBN13(val)
 	default:
 		return false
 	}
