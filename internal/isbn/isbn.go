@@ -36,7 +36,7 @@ func ISBN13(val []byte) bool {
 	return isISBN13(eraseMinus(val))
 }
 
-// isbn10 的校验位对应的值。
+// isbn10 的校验位对应的值
 var isbn10Map = []byte{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'x', '0'}
 
 func isISBN10(val []byte) bool {
