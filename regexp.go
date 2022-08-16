@@ -24,9 +24,7 @@ var (
 	cnTel    = regexpCompile(cnTelPattern)
 )
 
-func regexpCompile(str string) *regexp.Regexp {
-	return regexp.MustCompile("^" + str + "$")
-}
+func regexpCompile(str string) *regexp.Regexp { return regexp.MustCompile("^" + str + "$") }
 
 // CNPhone 验证中国大陆的电话号码
 //

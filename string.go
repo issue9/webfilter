@@ -9,12 +9,24 @@ import (
 
 	"github.com/issue9/validator/gb11643"
 	"github.com/issue9/validator/gb32100"
+	"github.com/issue9/validator/internal/convert"
 	"github.com/issue9/validator/internal/isbn"
+	"github.com/issue9/validator/internal/strength"
 	"github.com/issue9/validator/luhn"
 )
 
+// Strength 声明密码强度的验证对象
+//
+// length 对长度的最小要求；
+// upper 对大写字符的最小要求；
+// lower 对小写字符的最小要求；
+// punct 对符号的最小要求；
+func Strength(length, upper, lower, punct int) Validator {
+	return strength.New(length, upper, lower, punct)
+}
+
 func URL(val any) bool {
-	if s, ok := any2String(val); ok {
+	if s, ok := convert.String(val); ok {
 		_, err := url.ParseRequestURI(s)
 		return err == nil
 	}
@@ -22,7 +34,7 @@ func URL(val any) bool {
 }
 
 func Email(val any) bool {
-	if s, ok := any2String(val); ok {
+	if s, ok := convert.String(val); ok {
 		_, err := mail.ParseAddress(s)
 		return err == nil
 	}
@@ -30,7 +42,7 @@ func Email(val any) bool {
 }
 
 func IP4(val any) bool {
-	if s, ok := any2String(val); ok {
+	if s, ok := convert.String(val); ok {
 		if ip, err := netip.ParseAddr(s); err == nil {
 			return ip.Is4()
 		}
@@ -39,7 +51,7 @@ func IP4(val any) bool {
 }
 
 func IP6(val any) bool {
-	if s, ok := any2String(val); ok {
+	if s, ok := convert.String(val); ok {
 		if ip, err := netip.ParseAddr(s); err == nil {
 			return ip.Is6()
 		}
@@ -48,7 +60,7 @@ func IP6(val any) bool {
 }
 
 func IP(val any) bool {
-	if s, ok := any2String(val); ok {
+	if s, ok := convert.String(val); ok {
 		_, err := netip.ParseAddr(s)
 		return err == nil
 	}
@@ -108,27 +120,8 @@ func hexColor(val []byte) bool {
 }
 
 func validBytes(f func([]byte) bool, val any) bool {
-	switch v := val.(type) {
-	case string:
-		return f([]byte(v))
-	case []byte:
+	if v, ok := convert.Bytes(val); ok {
 		return f(v)
-	case []rune:
-		return f([]byte(string(v)))
-	default:
-		return false
 	}
-}
-
-func any2String(val any) (string, bool) {
-	switch v := val.(type) {
-	case string:
-		return v, true
-	case []byte:
-		return string(v), true
-	case []rune:
-		return string(v), true
-	default:
-		return "", false
-	}
+	return false
 }
