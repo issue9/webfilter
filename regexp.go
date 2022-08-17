@@ -43,7 +43,7 @@ func CNMobile(val any) bool { return Match(cnMobile)(val) }
 func CNTel(val any) bool { return Match(cnTel)(val) }
 
 // Match 为正则生成验证函数
-func Match(exp *regexp.Regexp) F {
+func Match(exp *regexp.Regexp) Func {
 	return func(val any) bool {
 		switch v := val.(type) {
 		case []rune:

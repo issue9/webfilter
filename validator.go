@@ -10,14 +10,14 @@ import "github.com/issue9/web/validation"
 type (
 	Validator = validation.Validator
 
-	// F 是 [Validator] 的函数形式
-	F = validation.ValidateFunc
+	// Func 是 [Validator] 的函数形式
+	Func = validation.ValidateFunc
 )
 
 func And(v ...Validator) Validator { return validation.And(v...) }
 
 func Or(v ...Validator) Validator { return validation.Or(v...) }
 
-func AndF(f ...func(any) bool) Validator { return validation.AndF(f...) }
+func AndFunc(f ...func(any) bool) Validator { return validation.AndF(f...) }
 
-func OrF(f ...func(any) bool) Validator { return validation.OrF(f...) }
+func OrFunc(f ...func(any) bool) Validator { return validation.OrF(f...) }
