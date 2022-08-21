@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/issue9/assert/v3 v3.0.0
 	github.com/issue9/sliceutil v0.11.0
-	github.com/issue9/web v0.55.3
+	github.com/issue9/web v0.57.0
 )
 
 require (
@@ -20,7 +20,7 @@ require (
 	github.com/issue9/scheduled v0.9.3 // indirect
 	github.com/issue9/term/v3 v3.0.1 // indirect
 	golang.org/x/exp v0.0.0-20220722155223-a9213eeb770e // indirect
-	golang.org/x/sys v0.0.0-20220811171246-fbc7d0a398ab // indirect
+	golang.org/x/sys v0.0.0-20220818161305-2296e01440c6 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
