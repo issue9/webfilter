@@ -82,11 +82,9 @@ func TestURL(t *testing.T) {
 	a := assert.New(t, false)
 
 	a.True(URL("http://www.example.com"))
-	a.True(URL([]byte("http://example.com")))
 	a.True(URL("http://www.example.com/path/?a=b"))
 	a.True(URL("https://www.example.com:88/path1/path2"))
 	a.True(URL("ftp://pwd:user@www.example.com/index.go?a=b"))
-	a.True(URL([]byte("ftp://pwd:user@www.example.com/index.go?a=b")))
 	a.True(URL("pwd:user@www.example.com/path/"))
 	a.True(URL("https://[fe80:0:0:0:204:61ff:fe9d:f156]/path/"))
 	a.True(URL("https://127.0.0.1/path//index.go?arg1=val1&arg2=val/2"))

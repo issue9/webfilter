@@ -2,7 +2,11 @@
 
 package validator
 
-import "regexp"
+import (
+	"regexp"
+
+	"github.com/issue9/web/validation"
+)
 
 const (
 	// 匹配大陆电话
@@ -34,26 +38,17 @@ func regexpCompile(str string) *regexp.Regexp { return regexp.MustCompile("^" + 
 //	057812345678-1234
 //
 // 若存在分机号，则分机号的连接符不能省略。
-func CNPhone(val any) bool { return Match(cnPhone)(val) }
+func CNPhone(val string) bool { return Match(cnPhone)(val) }
 
 // CNMobile 验证中国大陆的手机号码
-func CNMobile(val any) bool { return Match(cnMobile)(val) }
+func CNMobile(val string) bool { return Match(cnMobile)(val) }
 
 // CNTel 验证手机和电话类型
-func CNTel(val any) bool { return Match(cnTel)(val) }
+func CNTel(val string) bool { return Match(cnTel)(val) }
 
 // Match 为正则生成验证函数
-func Match(exp *regexp.Regexp) Func {
-	return func(val any) bool {
-		switch v := val.(type) {
-		case []rune:
-			return exp.MatchString(string(v))
-		case []byte:
-			return exp.Match(v)
-		case string:
-			return exp.MatchString(v)
-		default:
-			return false
-		}
+func Match(exp *regexp.Regexp) validation.ValidatorFuncOf[string] {
+	return func(val string) bool {
+		return exp.MatchString(val)
 	}
 }

@@ -5,9 +5,7 @@ package strength
 import (
 	"unicode"
 
-	"github.com/issue9/web"
-
-	"github.com/issue9/validator/internal/convert"
+	"github.com/issue9/web/validation"
 )
 
 type strength struct {
@@ -17,7 +15,7 @@ type strength struct {
 	punct  int
 }
 
-func New(length, upper, lower, punct int) web.Validator {
+func New(length, upper, lower, punct int) validation.ValidatorOf[string] {
 	return &strength{
 		length: length,
 		upper:  upper,
@@ -26,18 +24,13 @@ func New(length, upper, lower, punct int) web.Validator {
 	}
 }
 
-func (s *strength) IsValid(v any) (ok bool) {
+func (s *strength) IsValid(v string) (ok bool) {
 	if s.length == 0 && s.upper == 0 && s.lower == 0 && s.punct == 0 {
 		return true
 	}
 
-	rs, ok := convert.Runes(v)
-	if !ok {
-		return false
-	}
-
 	cnt := &strength{}
-	for _, r := range rs {
+	for _, r := range v {
 		switch {
 		case unicode.IsPunct(r) || unicode.IsSymbol(r):
 			cnt.punct++

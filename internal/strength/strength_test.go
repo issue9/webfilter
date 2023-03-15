@@ -12,7 +12,6 @@ func TestStrength(t *testing.T) {
 	a := assert.New(t, false)
 
 	v := New(0, 0, 0, 0)
-	a.True(v.IsValid(nil))
 	a.True(v.IsValid(""))
 	a.True(v.IsValid("123"))
 
@@ -33,14 +32,12 @@ func TestStrength(t *testing.T) {
 
 	v = New(0, 2, 3, 1)
 	a.False(v.IsValid(""))
-	a.False(v.IsValid(nil))
 	a.False(v.IsValid("12345678"))
 	a.True(v.IsValid("ABcde>"))
 	a.True(v.IsValid("ABcde123><"))
 
 	v = New(4, 2, 0, 1)
 	a.False(v.IsValid(""))
-	a.False(v.IsValid(nil))
 	a.False(v.IsValid("12345678"))
 	a.False(v.IsValid("AB>"))
 	a.True(v.IsValid("AB=!>"))
