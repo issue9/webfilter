@@ -7,7 +7,7 @@
 [![codecov](https://codecov.io/gh/issue9/validator/branch/master/graph/badge.svg)](https://codecov.io/gh/issue9/validator)
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/issue9/validator)](https://pkg.go.dev/github.com/issue9/validator)
 
-符合 [web/validation](https:://github.com/issue9/web) 要求的数据验证方法集合。
+符合 [web/validation](https://github.com/issue9/web) 要求的数据验证方法集合。
 
 ## 版权
 

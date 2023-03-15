@@ -10,8 +10,17 @@ type Number interface {
 		~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64
 }
 
-// Range 声明判断数值大小的验证规则
-func Range[T Number](min, max T) validation.ValidatorFuncOf[T] {
+// Between 判断数值区间 (min, max)
+func Between[T Number](min, max T) validation.ValidatorFuncOf[T] {
+	if max < min {
+		panic("max 必须大于等于 min")
+	}
+
+	return func(val T) bool { return val > min && val < max }
+}
+
+// BetweenEqual 判断数值区间 [min, max]
+func BetweenEqual[T Number](min, max T) validation.ValidatorFuncOf[T] {
 	if max < min {
 		panic("max 必须大于等于 min")
 	}
@@ -19,12 +28,18 @@ func Range[T Number](min, max T) validation.ValidatorFuncOf[T] {
 	return func(val T) bool { return val >= min && val <= max }
 }
 
-// Min 声明判断数值不小于 min 的验证规则
-func Min[T Number](min T) validation.ValidatorFuncOf[T] {
-	return func(v T) bool { return v >= min }
+func Less[T Number](num T) validation.ValidatorFuncOf[T] {
+	return func(t T) bool { return t < num }
 }
 
-// Max 声明判断数值不大于 max 的验证规则
-func Max[T Number](max T) validation.ValidatorFuncOf[T] {
-	return func(v T) bool { return v <= max }
+func LessEqual[T Number](num T) validation.ValidatorFuncOf[T] {
+	return func(t T) bool { return t <= num }
+}
+
+func Great[T Number](num T) validation.ValidatorFuncOf[T] {
+	return func(t T) bool { return t > num }
+}
+
+func GreatEqual[T Number](num T) validation.ValidatorFuncOf[T] {
+	return func(t T) bool { return t >= num }
 }

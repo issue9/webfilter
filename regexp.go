@@ -48,7 +48,5 @@ func CNTel(val string) bool { return Match(cnTel)(val) }
 
 // Match 为正则生成验证函数
 func Match(exp *regexp.Regexp) validation.ValidatorFuncOf[string] {
-	return func(val string) bool {
-		return exp.MatchString(val)
-	}
+	return func(val string) bool { return exp.MatchString(val) }
 }

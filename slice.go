@@ -17,8 +17,6 @@ func In[T comparable](element ...T) validation.ValidatorFuncOf[T] {
 }
 
 // NotIn 声明不在枚举中的验证规则
-func NotIn[T comparable](element ...T) validation.ValidatorFuncOf[T] {
-	return func(v T) bool {
-		return !sliceutil.Exists(element, func(elem T) bool { return elem == v })
-	}
+func NotIn[T comparable](element ...T) validation.ValidatorOf[T] {
+	return Not[T](In(element...))
 }
