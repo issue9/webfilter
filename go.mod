@@ -1,4 +1,4 @@
-module github.com/issue9/validator
+module github.com/issue9/filter
 
 go 1.18
 
