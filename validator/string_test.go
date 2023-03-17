@@ -90,3 +90,18 @@ func TestURL(t *testing.T) {
 	a.True(URL("https://127.0.0.1/path//index.go?arg1=val1&arg2=val/2"))
 	a.True(URL("https://[::1]/path/index.go?arg1=val1"))
 }
+
+func TestAscii(t *testing.T) {
+	a := assert.New(t, false)
+
+	a.True(Ascii("abc"))
+	a.False(Ascii("\u1000"))
+}
+
+func TestAlpha(t *testing.T) {
+	a := assert.New(t, false)
+
+	a.False(Alpha("12345"))
+	a.True(Alpha("abc"))
+	a.False(Alpha("abc12"))
+}

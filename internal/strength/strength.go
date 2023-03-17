@@ -5,7 +5,7 @@ package strength
 import (
 	"unicode"
 
-	"github.com/issue9/web/validation"
+	"github.com/issue9/web/filter"
 )
 
 type strength struct {
@@ -15,45 +15,38 @@ type strength struct {
 	punct  int
 }
 
-func New(length, upper, lower, punct int) validation.ValidatorOf[string] {
-	return &strength{
-		length: length,
-		upper:  upper,
-		lower:  lower,
-		punct:  punct,
-	}
-}
-
-func (s *strength) IsValid(v string) (ok bool) {
-	if s.length == 0 && s.upper == 0 && s.lower == 0 && s.punct == 0 {
-		return true
-	}
-
-	cnt := &strength{}
-	for _, r := range v {
-		switch {
-		case unicode.IsPunct(r) || unicode.IsSymbol(r):
-			cnt.punct++
-		case unicode.IsUpper(r):
-			cnt.upper++
-		case unicode.IsLower(r):
-			cnt.lower++
+func New(length, upper, lower, punct int) filter.ValidatorFuncOf[string] {
+	return func(s string) bool {
+		if length == 0 && upper == 0 && lower == 0 && punct == 0 {
+			return true
 		}
-		cnt.length++
-	}
 
-	ok = true
-	if s.length > 0 {
-		ok = cnt.length >= s.length
+		cnt := &strength{}
+		for _, r := range s {
+			switch {
+			case unicode.IsPunct(r) || unicode.IsSymbol(r):
+				cnt.punct++
+			case unicode.IsUpper(r):
+				cnt.upper++
+			case unicode.IsLower(r):
+				cnt.lower++
+			}
+			cnt.length++
+		}
+
+		ok := true
+		if length > 0 {
+			ok = cnt.length >= length
+		}
+		if ok && lower > 0 {
+			ok = cnt.lower >= lower
+		}
+		if ok && upper > 0 {
+			ok = cnt.upper >= upper
+		}
+		if ok && punct > 0 {
+			ok = cnt.punct >= punct
+		}
+		return ok
 	}
-	if ok && s.lower > 0 {
-		ok = cnt.lower >= s.lower
-	}
-	if ok && s.upper > 0 {
-		ok = cnt.upper >= s.upper
-	}
-	if ok && s.punct > 0 {
-		ok = cnt.punct >= s.punct
-	}
-	return ok
 }

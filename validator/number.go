@@ -2,7 +2,7 @@
 
 package validator
 
-import "github.com/issue9/web/validation"
+import "github.com/issue9/web/filter"
 
 type Number interface {
 	float32 | float64 |
@@ -11,7 +11,7 @@ type Number interface {
 }
 
 // Between 判断数值区间 (min, max)
-func Between[T Number](min, max T) validation.ValidatorFuncOf[T] {
+func Between[T Number](min, max T) filter.ValidatorFuncOf[T] {
 	if max < min {
 		panic("max 必须大于等于 min")
 	}
@@ -20,7 +20,7 @@ func Between[T Number](min, max T) validation.ValidatorFuncOf[T] {
 }
 
 // BetweenEqual 判断数值区间 [min, max]
-func BetweenEqual[T Number](min, max T) validation.ValidatorFuncOf[T] {
+func BetweenEqual[T Number](min, max T) filter.ValidatorFuncOf[T] {
 	if max < min {
 		panic("max 必须大于等于 min")
 	}
@@ -28,18 +28,18 @@ func BetweenEqual[T Number](min, max T) validation.ValidatorFuncOf[T] {
 	return func(val T) bool { return val >= min && val <= max }
 }
 
-func Less[T Number](num T) validation.ValidatorFuncOf[T] {
+func Less[T Number](num T) filter.ValidatorFuncOf[T] {
 	return func(t T) bool { return t < num }
 }
 
-func LessEqual[T Number](num T) validation.ValidatorFuncOf[T] {
+func LessEqual[T Number](num T) filter.ValidatorFuncOf[T] {
 	return func(t T) bool { return t <= num }
 }
 
-func Great[T Number](num T) validation.ValidatorFuncOf[T] {
+func Great[T Number](num T) filter.ValidatorFuncOf[T] {
 	return func(t T) bool { return t > num }
 }
 
-func GreatEqual[T Number](num T) validation.ValidatorFuncOf[T] {
+func GreatEqual[T Number](num T) filter.ValidatorFuncOf[T] {
 	return func(t T) bool { return t >= num }
 }

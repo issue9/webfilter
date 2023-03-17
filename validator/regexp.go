@@ -5,7 +5,7 @@ package validator
 import (
 	"regexp"
 
-	"github.com/issue9/web/validation"
+	"github.com/issue9/web/filter"
 )
 
 const (
@@ -47,6 +47,6 @@ func CNMobile(val string) bool { return Match(cnMobile)(val) }
 func CNTel(val string) bool { return Match(cnTel)(val) }
 
 // Match 为正则生成验证函数
-func Match(exp *regexp.Regexp) validation.ValidatorFuncOf[string] {
+func Match(exp *regexp.Regexp) filter.ValidatorFuncOf[string] {
 	return func(val string) bool { return exp.MatchString(val) }
 }

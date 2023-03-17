@@ -6,8 +6,9 @@ import (
 	"net/mail"
 	"net/netip"
 	"net/url"
+	"strings"
 
-	"github.com/issue9/web/validation"
+	"github.com/issue9/web/filter"
 
 	"github.com/issue9/validator/gb11643"
 	"github.com/issue9/validator/gb32100"
@@ -22,7 +23,7 @@ import (
 // upper 对大写字符的最小要求；
 // lower 对小写字符的最小要求；
 // punct 对符号的最小要求；
-func Strength(length, upper, lower, punct int) validation.ValidatorOf[string] {
+func Strength(length, upper, lower, punct int) filter.ValidatorFuncOf[string] {
 	return strength.New(length, upper, lower, punct)
 }
 
@@ -101,6 +102,32 @@ func hexColor(val []byte) bool {
 		case 'a' <= v && v <= 'f':
 		case 'A' <= v && v <= 'F':
 		default:
+			return false
+		}
+	}
+	return true
+}
+
+func StartWith(prefix string) filter.ValidatorFuncOf[string] {
+	return func(s string) bool { return strings.HasPrefix(s, prefix) }
+}
+
+func EndWith(suffix string) filter.ValidatorFuncOf[string] {
+	return func(s string) bool { return strings.HasSuffix(s, suffix) }
+}
+
+func Ascii(s string) bool {
+	for _, c := range s {
+		if c > 127 {
+			return false
+		}
+	}
+	return true
+}
+
+func Alpha(s string) bool {
+	for _, c := range s {
+		if c < 'a' || c > 'z' && (c < 'A' || c > 'Z') {
 			return false
 		}
 	}

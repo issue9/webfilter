@@ -1,11 +1,11 @@
 github.com/issue9/assert/v3 v3.0.4 h1:WsYZQ6PQmM/pGFrbkn5GIXjWeVZHv+wcl2829UTX1Qc=
 github.com/issue9/assert/v3 v3.0.4/go.mod h1:yft/uaskRpwQTyBT3n1zRl91SR1wNlO4fLZHzOa4bdM=
-github.com/issue9/localeutil v0.13.1 h1:Imnc2qLnwV6dhNHh+Ol93synLhe700pW8QnvmdeI3oE=
-github.com/issue9/localeutil v0.13.1/go.mod h1:P0EuquMAq2Dr6Lypa6CuyMdPGgTyH0Jlfmpcss4rjHE=
+github.com/issue9/localeutil v0.13.2 h1:KGBo86X/7OCHYUsZPVIsXHOIPtJeifI/5KjL70f421g=
+github.com/issue9/localeutil v0.13.2/go.mod h1:P0EuquMAq2Dr6Lypa6CuyMdPGgTyH0Jlfmpcss4rjHE=
 github.com/issue9/sliceutil v0.12.0 h1:5SqNbNqiYrdYd4lfpYAVc5/3MBcB1JXMwDf1iAyViaI=
 github.com/issue9/sliceutil v0.12.0/go.mod h1:KdnaZI342DHMrS6AkN0SSxqpFkJ6/4FyPpKm5m6S6Mk=
-github.com/issue9/web v0.72.0 h1:6b8d6zMFwGzX+0g9ZeUkg8FSqTc544LcpHkFIsD0vns=
-github.com/issue9/web v0.72.0/go.mod h1:YjErKQTRuj/Pj1GxzNsQtvCHoyHnzPlRc8idBuaMd+M=
+github.com/issue9/web v0.73.0 h1:BUq9OZQOD8zIzo3tN2NJAI3aO/tEZ0u6oONAiEvHSOc=
+github.com/issue9/web v0.73.0/go.mod h1:9LvHdd0mj7G8bk3N6KTrszR6MtiLwiO8uqBBMYvTxjw=
 golang.org/x/text v0.8.0 h1:57P1ETyNKtuIjB4SRd15iJxuhj8Gc416Y78H3qgMh68=
 golang.org/x/text v0.8.0/go.mod h1:e1OnstbJyHTd6l/uOt8jFFHp6TRDWZR/bV3emEE/zU8=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
