@@ -43,3 +43,6 @@ func Great[T Number](num T) filter.ValidatorFuncOf[T] {
 func GreatEqual[T Number](num T) filter.ValidatorFuncOf[T] {
 	return func(t T) bool { return t >= num }
 }
+
+// HTTPStatus 是否为有效的 HTTP 状态码
+func HTTPStatus(s int) bool { return BetweenEqual(100, 599)(s) }

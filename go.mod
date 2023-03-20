@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/issue9/assert/v3 v3.0.4
 	github.com/issue9/sliceutil v0.12.0
-	github.com/issue9/web v0.73.0
+	github.com/issue9/web v0.74.0
 )
 
 require (
