@@ -29,3 +29,7 @@ func Zero[T any](v T) bool { return reflect.ValueOf(v).IsZero() }
 func Equal[T comparable](v T) filter.ValidatorFuncOf[T] {
 	return func(t T) bool { return t == v }
 }
+
+func NilOr[T any](v func(T) bool) filter.ValidatorFuncOf[T] {
+	return Or(func(v T) bool { return reflect.ValueOf(v).IsNil() }, v)
+}
