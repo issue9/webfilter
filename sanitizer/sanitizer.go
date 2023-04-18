@@ -14,6 +14,7 @@ func Sanitizers[T any](f ...func(*T)) filter.SanitizeFuncOf[T] {
 	return filter.Sanitizers(f...)
 }
 
+// Trim 过滤左右空格
 func Trim(v *string) { *v = strings.TrimSpace(*v) }
 
 func TrimLeft(v *string) {

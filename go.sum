@@ -4,8 +4,8 @@ github.com/issue9/localeutil v0.14.3 h1:Ok6plvPJAMzcPqUnb0X8yD64DnTRX+F+Aojpazk+
 github.com/issue9/localeutil v0.14.3/go.mod h1:kr2IA6k0geNVHfKXyMrRrG7zhg2cuW7QACckASJsmKk=
 github.com/issue9/sliceutil v0.12.0 h1:5SqNbNqiYrdYd4lfpYAVc5/3MBcB1JXMwDf1iAyViaI=
 github.com/issue9/sliceutil v0.12.0/go.mod h1:KdnaZI342DHMrS6AkN0SSxqpFkJ6/4FyPpKm5m6S6Mk=
-github.com/issue9/web v0.74.2 h1:vgsOXojaE87gZCH+/N4MgIvLtyvv2h6TKc3EH3EsmW8=
-github.com/issue9/web v0.74.2/go.mod h1:Cg3dnhkPspsgBX2FUM6hKXr+N95H3LxYnQ7L+Zp1s8Q=
+github.com/issue9/web v0.76.0 h1:rQYgvAnYGaxwRxTNKP64kj0wVlhg8moKG6jcRnzsyJg=
+github.com/issue9/web v0.76.0/go.mod h1:9VDwv0SpM5ppnNmRVpzIuyWu6uZJMOTsciyU0HJknZs=
 golang.org/x/text v0.9.0 h1:2sjJmO8cDvYveuX97RDLsxlyUxLl+GHoLxBiRdHllBE=
 golang.org/x/text v0.9.0/go.mod h1:e1OnstbJyHTd6l/uOt8jFFHp6TRDWZR/bV3emEE/zU8=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=

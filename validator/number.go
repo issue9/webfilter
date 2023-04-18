@@ -46,3 +46,8 @@ func GreatEqual[T Number](num T) filter.ValidatorFuncOf[T] {
 
 // HTTPStatus 是否为有效的 HTTP 状态码
 func HTTPStatus(s int) bool { return BetweenEqual(100, 599)(s) }
+
+// ZeroOr 判断值为零值或是非零情况下符合 v 的要求
+func ZeroOr[T Number](v filter.ValidatorFuncOf[T]) filter.ValidatorFuncOf[T] {
+	return filter.Or(func(v T) bool { return v == 0 }, v)
+}

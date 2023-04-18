@@ -133,3 +133,8 @@ func Alpha(s string) bool {
 	}
 	return true
 }
+
+// EmptyOr 空字符串或是非空的情况下满足 v 的条件
+func EmptyOr(v filter.ValidatorFuncOf[string]) filter.ValidatorFuncOf[string] {
+	return Or(func(s string) bool { return s == "" }, v)
+}
