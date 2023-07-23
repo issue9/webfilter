@@ -12,7 +12,7 @@ import (
 // 要求验证的值必须包含在 element 元素中，如果不存在，则返回 msg 的内容。
 func In[T comparable](element ...T) filter.ValidatorFuncOf[T] {
 	return func(v T) bool {
-		return sliceutil.Exists(element, func(elem T) bool { return elem == v })
+		return sliceutil.Exists(element, func(elem T, _ int) bool { return elem == v })
 	}
 }
 
