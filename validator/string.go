@@ -8,8 +8,6 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/issue9/web/filter"
-
 	"github.com/issue9/filter/gb11643"
 	"github.com/issue9/filter/gb32100"
 	"github.com/issue9/filter/internal/isbn"
@@ -23,7 +21,7 @@ import (
 // upper 对大写字符的最小要求；
 // lower 对小写字符的最小要求；
 // punct 对符号的最小要求；
-func Strength(length, upper, lower, punct int) filter.ValidatorFuncOf[string] {
+func Strength(length, upper, lower, punct int) func(string) bool {
 	return strength.New(length, upper, lower, punct)
 }
 
@@ -108,11 +106,11 @@ func hexColor(val []byte) bool {
 	return true
 }
 
-func StartWith(prefix string) filter.ValidatorFuncOf[string] {
+func StartWith(prefix string) func(string) bool {
 	return func(s string) bool { return strings.HasPrefix(s, prefix) }
 }
 
-func EndWith(suffix string) filter.ValidatorFuncOf[string] {
+func EndWith(suffix string) func(string) bool {
 	return func(s string) bool { return strings.HasSuffix(s, suffix) }
 }
 
@@ -135,6 +133,6 @@ func Alpha(s string) bool {
 }
 
 // EmptyOr 空字符串或是非空的情况下满足 v 的条件
-func EmptyOr(v filter.ValidatorFuncOf[string]) filter.ValidatorFuncOf[string] {
+func EmptyOr(v func(string) bool) func(string) bool {
 	return Or(func(s string) bool { return s == "" }, v)
 }

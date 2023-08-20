@@ -2,11 +2,7 @@
 
 package validator
 
-import (
-	"regexp"
-
-	"github.com/issue9/web/filter"
-)
+import "regexp"
 
 const (
 	// 匹配大陆电话
@@ -47,6 +43,6 @@ func CNMobile(val string) bool { return Match(cnMobile)(val) }
 func CNTel(val string) bool { return Match(cnTel)(val) }
 
 // Match 为正则生成验证函数
-func Match(exp *regexp.Regexp) filter.ValidatorFuncOf[string] {
+func Match(exp *regexp.Regexp) func(string) bool {
 	return func(val string) bool { return exp.MatchString(val) }
 }

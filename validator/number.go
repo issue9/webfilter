@@ -2,8 +2,6 @@
 
 package validator
 
-import "github.com/issue9/web/filter"
-
 type Number interface {
 	float32 | float64 |
 		~int | ~int8 | ~int16 | ~int32 | ~int64 |
@@ -11,7 +9,7 @@ type Number interface {
 }
 
 // Between 判断数值区间 (min, max)
-func Between[T Number](min, max T) filter.ValidatorFuncOf[T] {
+func Between[T Number](min, max T) func(T) bool {
 	if max < min {
 		panic("max 必须大于等于 min")
 	}
@@ -20,7 +18,7 @@ func Between[T Number](min, max T) filter.ValidatorFuncOf[T] {
 }
 
 // BetweenEqual 判断数值区间 [min, max]
-func BetweenEqual[T Number](min, max T) filter.ValidatorFuncOf[T] {
+func BetweenEqual[T Number](min, max T) func(T) bool {
 	if max < min {
 		panic("max 必须大于等于 min")
 	}
@@ -28,19 +26,19 @@ func BetweenEqual[T Number](min, max T) filter.ValidatorFuncOf[T] {
 	return func(val T) bool { return val >= min && val <= max }
 }
 
-func Less[T Number](num T) filter.ValidatorFuncOf[T] {
+func Less[T Number](num T) func(T) bool {
 	return func(t T) bool { return t < num }
 }
 
-func LessEqual[T Number](num T) filter.ValidatorFuncOf[T] {
+func LessEqual[T Number](num T) func(T) bool {
 	return func(t T) bool { return t <= num }
 }
 
-func Great[T Number](num T) filter.ValidatorFuncOf[T] {
+func Great[T Number](num T) func(T) bool {
 	return func(t T) bool { return t > num }
 }
 
-func GreatEqual[T Number](num T) filter.ValidatorFuncOf[T] {
+func GreatEqual[T Number](num T) func(T) bool {
 	return func(t T) bool { return t >= num }
 }
 
@@ -48,6 +46,6 @@ func GreatEqual[T Number](num T) filter.ValidatorFuncOf[T] {
 func HTTPStatus(s int) bool { return BetweenEqual(100, 599)(s) }
 
 // ZeroOr 判断值为零值或是非零情况下符合 v 的要求
-func ZeroOr[T Number](v filter.ValidatorFuncOf[T]) filter.ValidatorFuncOf[T] {
-	return filter.Or(func(v T) bool { return v == 0 }, v)
+func ZeroOr[T Number](v func(T) bool) func(T) bool {
+	return Or(func(v T) bool { return v == 0 }, v)
 }

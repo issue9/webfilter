@@ -6,12 +6,14 @@ package sanitizer
 import (
 	"strings"
 	"unicode"
-
-	"github.com/issue9/web/filter"
 )
 
-func Sanitizers[T any](f ...func(*T)) filter.SanitizeFuncOf[T] {
-	return filter.Sanitizers(f...)
+func Sanitizers[T any](f ...func(*T)) func(*T) {
+	return func(v *T) {
+		for _, ss := range f {
+			ss(v)
+		}
+	}
 }
 
 // Trim 过滤左右空格

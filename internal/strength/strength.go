@@ -2,11 +2,7 @@
 
 package strength
 
-import (
-	"unicode"
-
-	"github.com/issue9/web/filter"
-)
+import "unicode"
 
 type strength struct {
 	length int
@@ -15,7 +11,7 @@ type strength struct {
 	punct  int
 }
 
-func New(length, upper, lower, punct int) filter.ValidatorFuncOf[string] {
+func New(length, upper, lower, punct int) func(string) bool {
 	return func(s string) bool {
 		if length == 0 && upper == 0 && lower == 0 && punct == 0 {
 			return true

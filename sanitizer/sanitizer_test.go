@@ -8,6 +8,15 @@ import (
 	"github.com/issue9/assert/v3"
 )
 
+func TestSanitizers(t *testing.T) {
+	a := assert.New(t, false)
+
+	s := Sanitizers(TrimLeft, TrimRight)
+	str := "  str  "
+	s(&str)
+	a.Equal(str, "str")
+}
+
 func TestTrim(t *testing.T) {
 	a := assert.New(t, false)
 
