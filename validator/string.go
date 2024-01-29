@@ -136,3 +136,38 @@ func Alpha(s string) bool {
 func EmptyOr(v func(string) bool) func(string) bool {
 	return Or(func(s string) bool { return s == "" }, v)
 }
+
+// CNMobile 验证中国大陆的手机号码
+func CNMobile(val string) bool {
+	// 可选的 0,86,086,+86
+	// 开头 12x-19x
+
+	if len(val) == 0 {
+		return false
+	}
+
+	if val[0] == '0' || val[0] == '+' {
+		val = val[1:]
+	}
+
+	val = strings.TrimPrefix(val, "86")
+
+	if len(val) != 11 {
+		return false
+	}
+
+	if val[0] != '1' {
+		return false
+	}
+
+	return isNumber(val[1:])
+}
+
+func isNumber(val string) bool {
+	for _, c := range val[1:] {
+		if c < '0' || c > '9' {
+			return false
+		}
+	}
+	return true
+}

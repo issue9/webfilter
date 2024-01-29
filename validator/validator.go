@@ -2,7 +2,7 @@
 
 // Package validator 符合 [web.filter] 的验证器
 //
-// [web.filter]: https://pkg.go.dev/github.com/issue9/web/filter
+// [web.filter]: https://pkg.go.dev/github.com/issue9/web#Filter
 package validator
 
 import "reflect"

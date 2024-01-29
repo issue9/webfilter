@@ -9,20 +9,9 @@ const (
 	cnPhonePattern = `((\d{3,4})-?)?` + // 区号
 		`\d{5,10}` + // 号码，95500 等 5 位数的，7 位，8 位，以及 400 开头的 10 位数
 		`(-\d{1,4})?` // 分机号，分机号的连接符号不能省略。
-
-	// 匹配大陆手机号码
-	cnMobilePattern = `(0|\+?86)?` + // 匹配 0,86,+86
-		`1[2-9]{1}[0-9]{9}` // 12x-19x
-
-	// 匹配大陆手机号或是电话号码
-	cnTelPattern = "(" + cnPhonePattern + ")|(" + cnMobilePattern + ")"
 )
 
-var (
-	cnPhone  = regexpCompile(cnPhonePattern)
-	cnMobile = regexpCompile(cnMobilePattern)
-	cnTel    = regexpCompile(cnTelPattern)
-)
+var cnPhone = regexpCompile(cnPhonePattern)
 
 func regexpCompile(str string) *regexp.Regexp { return regexp.MustCompile("^" + str + "$") }
 
@@ -36,11 +25,8 @@ func regexpCompile(str string) *regexp.Regexp { return regexp.MustCompile("^" + 
 // 若存在分机号，则分机号的连接符不能省略。
 func CNPhone(val string) bool { return Match(cnPhone)(val) }
 
-// CNMobile 验证中国大陆的手机号码
-func CNMobile(val string) bool { return Match(cnMobile)(val) }
-
 // CNTel 验证手机和电话类型
-func CNTel(val string) bool { return Match(cnTel)(val) }
+func CNTel(val string) bool { return CNMobile(val) || CNPhone(val) }
 
 // Match 为正则生成验证函数
 func Match(exp *regexp.Regexp) func(string) bool {

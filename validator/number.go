@@ -2,6 +2,7 @@
 
 package validator
 
+// TODO(go1.21): 改为 cmd.Ordered
 type Number interface {
 	float32 | float64 |
 		~int | ~int8 | ~int16 | ~int32 | ~int64 |
