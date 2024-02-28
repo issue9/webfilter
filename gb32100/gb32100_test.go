@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2022-2024 caixw
+//
 // SPDX-License-Identifier: MIT
 
 package gb32100
@@ -5,7 +7,7 @@ package gb32100
 import (
 	"testing"
 
-	"github.com/issue9/assert/v3"
+	"github.com/issue9/assert/v4"
 )
 
 var validData = []string{

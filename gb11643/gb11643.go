@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2022-2024 caixw
+//
 // SPDX-License-Identifier: MIT
 
 // Package gb11643 解析身分证详情
@@ -34,8 +36,6 @@ type GB11643 struct {
 }
 
 // Parse 分析身份证信息
-//
-// 不作正确性检测，如有需求，请使用 is.GB11643
 func Parse(bs string) (*GB11643, error) {
 	if !IsValid([]byte(bs)) {
 		return nil, ErrInvalidFormat

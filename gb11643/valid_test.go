@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2022-2024 caixw
+//
 // SPDX-License-Identifier: MIT
 
 package gb11643
@@ -6,13 +8,13 @@ import (
 	"math"
 	"testing"
 
-	"github.com/issue9/assert/v3"
+	"github.com/issue9/assert/v4"
 )
 
 // 计算各个数值位对应的系数值。
 func getWeight() []int {
 	l := 17
-	ret := make([]int, 17, 17)
+	ret := make([]int, 17)
 	for i := 0; i < l; i++ {
 		k := int(math.Pow(2, float64((l - i)))) // k值足够大，不能用byte保存
 		ret[i] = k % 11

@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2022-2024 caixw
+//
 // SPDX-License-Identifier: MIT
 
 package sanitizer
@@ -5,7 +7,7 @@ package sanitizer
 import (
 	"testing"
 
-	"github.com/issue9/assert/v3"
+	"github.com/issue9/assert/v4"
 )
 
 func TestSanitizers(t *testing.T) {

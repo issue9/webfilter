@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2022-2024 caixw
+//
 // SPDX-License-Identifier: MIT
 
 package validator
@@ -5,7 +7,7 @@ package validator
 import (
 	"testing"
 
-	"github.com/issue9/assert/v3"
+	"github.com/issue9/assert/v4"
 )
 
 func TestNot(t *testing.T) {

@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        go: ['1.18.x', '1.21.x']
+        go: ['1.18.x', '1.22.x']
         
     steps:
 
@@ -20,7 +20,7 @@ jobs:
           git config --global core.eol lf
 
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Go ${{ matrix.go }}
         uses: actions/setup-go@v4
