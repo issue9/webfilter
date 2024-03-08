@@ -6,8 +6,9 @@
 package gb11643
 
 import (
-	"errors"
 	"time"
+
+	"github.com/issue9/web/locales"
 )
 
 // 我国现行的身份证号码有两种标准：GB11643-1989、GB11643-1999：
@@ -24,9 +25,6 @@ import (
 
 const layout = "20060102"
 
-// ErrInvalidFormat 身份证号码格式错误
-var ErrInvalidFormat = errors.New("无效的格式")
-
 // GB11643 身份证信息
 type GB11643 struct {
 	Raw    string    // 原始数据
@@ -38,7 +36,7 @@ type GB11643 struct {
 // Parse 分析身份证信息
 func Parse(bs string) (*GB11643, error) {
 	if !IsValid([]byte(bs)) {
-		return nil, ErrInvalidFormat
+		return nil, locales.ErrInvalidFormat()
 	}
 
 	switch len(bs) {
@@ -47,7 +45,7 @@ func Parse(bs string) (*GB11643, error) {
 	case 18:
 		return parse18(bs)
 	default:
-		return nil, ErrInvalidFormat
+		return nil, locales.ErrInvalidFormat()
 	}
 }
 

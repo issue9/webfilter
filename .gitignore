@@ -18,6 +18,7 @@
 .vscode/
 .idea/
 .vs/
+.zed/
 *.swp
 
 .DS_Store
