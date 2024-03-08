@@ -1,4 +1,2 @@
 github.com/issue9/assert/v4 v4.1.1 h1:OhPE8SB8n/qZCNGLQa+6MQtr/B3oON0JAVj68k8jJlc=
 github.com/issue9/assert/v4 v4.1.1/go.mod h1:v7qDRXi7AsaZZNh8eAK2rkLJg5/clztqQGA1DRv9Lv4=
-github.com/issue9/sliceutil v0.15.1 h1:mV1VlQSO5E8sh2ab6pypLg7TdgGZlDb30E8quli01xY=
-github.com/issue9/sliceutil v0.15.1/go.mod h1:ldun6sT4/bOJxuMtOXhtc6P7GCwE7L+avV86HNks7qk=

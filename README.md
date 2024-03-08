@@ -1,11 +1,11 @@
 # validator
 
-[![Go](https://github.com/issue9/validator/workflows/Test/badge.svg)](https://github.com/issue9/validator/actions?query=workflow%3ATest)
-[![Go Report Card](https://goreportcard.com/badge/github.com/issue9/validator)](https://goreportcard.com/report/github.com/issue9/validator)
-![License](https://img.shields.io/github/license/issue9/validator)
-[![Go version](https://img.shields.io/github/go-mod/go-version/issue9/validator)](https://golang.org)
-[![codecov](https://codecov.io/gh/issue9/validator/branch/master/graph/badge.svg)](https://codecov.io/gh/issue9/validator)
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/issue9/validator)](https://pkg.go.dev/github.com/issue9/validator)
+[![Go](https://github.com/issue9/webfilter/workflows/Test/badge.svg)](https://github.com/issue9/webfilter/actions?query=workflow%3ATest)
+[![Go Report Card](https://goreportcard.com/badge/github.com/issue9/webfilter)](https://goreportcard.com/report/github.com/issue9/webfilter)
+![License](https://img.shields.io/github/license/issue9/webfilter)
+[![Go version](https://img.shields.io/github/go-mod/go-version/issue9/webfilter)](https://golang.org)
+[![codecov](https://codecov.io/gh/issue9/webfilter/branch/master/graph/badge.svg)](https://codecov.io/gh/issue9/webfilter)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/issue9/webfilter)](https://pkg.go.dev/github.com/issue9/webfilter)
 
 符合 [web/filter](https://github.com/issue9/web) 的过滤器。
 
