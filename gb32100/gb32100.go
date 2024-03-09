@@ -95,6 +95,7 @@ type GB32100 struct {
 	ID       string // 主体代码
 }
 
+// Parse 解析统一信用代码至 [GB32100]
 func Parse(bs string) (*GB32100, error) {
 	if !IsValid([]byte(bs)) {
 		return nil, locales.ErrInvalidFormat()
@@ -109,6 +110,8 @@ func Parse(bs string) (*GB32100, error) {
 	}, nil
 }
 
+// MinistryName 返回登记管理部门
 func (g *GB32100) MinistryName() string { return ministries[g.Ministry] }
 
+// TypeName 返回登记管理部门下的类型名称
 func (g *GB32100) TypeName() string { return types[g.Ministry][g.Type] }

@@ -44,7 +44,7 @@ func GreatEqual[T cmp.Ordered](num T) func(T) bool {
 func HTTPStatus(s int) bool { return BetweenEqual(100, 599)(s) }
 
 // ZeroOr 判断值为零值或是非零情况下符合 v 的要求
-func ZeroOr[T cmp.Ordered](v func(T) bool) func(T) bool {
+func ZeroOr[T comparable](v func(T) bool) func(T) bool {
 	var zero T
 	return Or(func(v T) bool { return v == zero }, v)
 }

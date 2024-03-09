@@ -6,12 +6,10 @@ package validator
 
 import "regexp"
 
-const (
-	// 匹配大陆电话
-	cnPhonePattern = `((\d{3,4})-?)?` + // 区号
-		`\d{5,10}` + // 号码，95500 等 5 位数的，7 位，8 位，以及 400 开头的 10 位数
-		`(-\d{1,4})?` // 分机号，分机号的连接符号不能省略。
-)
+// 匹配大陆电话
+const cnPhonePattern = `((\d{3,4})-?)?` + // 区号
+	`\d{5,10}` + // 号码，95500 等 5 位数的，7 位，8 位，以及 400 开头的 10 位数
+	`(-\d{1,4})?` // 分机号，分机号的连接符号不能省略。
 
 var cnPhone = regexpCompile(cnPhonePattern)
 

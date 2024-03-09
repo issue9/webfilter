@@ -10,11 +10,11 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/issue9/filter/gb11643"
-	"github.com/issue9/filter/gb32100"
-	"github.com/issue9/filter/internal/isbn"
-	"github.com/issue9/filter/internal/strength"
-	"github.com/issue9/filter/luhn"
+	"github.com/issue9/webfilter/gb11643"
+	"github.com/issue9/webfilter/gb32100"
+	"github.com/issue9/webfilter/internal/isbn"
+	"github.com/issue9/webfilter/internal/strength"
+	"github.com/issue9/webfilter/luhn"
 )
 
 // Strength 声明密码强度的验证对象

@@ -1,4 +1,4 @@
-module github.com/issue9/filter
+module github.com/issue9/webfilter
 
 go 1.21
 
