@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/google/uuid"
 	"github.com/issue9/webfilter/gb11643"
 	"github.com/issue9/webfilter/gb32100"
 	"github.com/issue9/webfilter/internal/isbn"
@@ -38,17 +39,13 @@ func Email(val string) bool {
 }
 
 func IP4(val string) bool {
-	if ip, err := netip.ParseAddr(val); err == nil {
-		return ip.Is4()
-	}
-	return false
+	ip, err := netip.ParseAddr(val)
+	return err == nil && ip.Is4()
 }
 
 func IP6(val string) bool {
-	if ip, err := netip.ParseAddr(val); err == nil {
-		return ip.Is6()
-	}
-	return false
+	ip, err := netip.ParseAddr(val)
+	return err == nil && ip.Is6()
 }
 
 func IP(val string) bool {
@@ -85,9 +82,7 @@ func BankCard(val string) bool { return Luhn(val) }
 func Luhn(val string) bool { return luhn.IsValid([]byte(val)) }
 
 // HexColor 判断一个字符串是否为合法的 16 进制颜色表示法
-func HexColor(val string) bool { return hexColor([]byte(val)) }
-
-func hexColor(val []byte) bool {
+func HexColor(val string) bool {
 	if len(val) != 4 && len(val) != 7 {
 		return false
 	}
@@ -96,7 +91,12 @@ func hexColor(val []byte) bool {
 		return false
 	}
 
-	for _, v := range val[1:] {
+	return Hex(val[1:])
+}
+
+// Hex 是否符合 16 进制数字
+func Hex(val string) bool {
+	for _, v := range val {
 		switch {
 		case '0' <= v && v <= '9':
 		case 'a' <= v && v <= 'f':
@@ -116,7 +116,8 @@ func EndWith(suffix string) func(string) bool {
 	return func(s string) bool { return strings.HasSuffix(s, suffix) }
 }
 
-func Ascii(s string) bool {
+// ASCII ASCII 码
+func ASCII(s string) bool {
 	for _, c := range s {
 		if c > 127 {
 			return false
@@ -125,6 +126,7 @@ func Ascii(s string) bool {
 	return true
 }
 
+// Alpha 全部都是英文字符
 func Alpha(s string) bool {
 	for _, c := range s {
 		if c < 'a' || c > 'z' && (c < 'A' || c > 'Z') {
@@ -162,10 +164,11 @@ func CNMobile(val string) bool {
 		return false
 	}
 
-	return isNumber(val[1:])
+	return Digit(val[1:])
 }
 
-func isNumber(val string) bool {
+// Digit 判断字符串是否都为数字
+func Digit(val string) bool {
 	for _, c := range val[1:] {
 		if c < '0' || c > '9' {
 			return false
@@ -173,3 +176,6 @@ func isNumber(val string) bool {
 	}
 	return true
 }
+
+// UUID 验证 UUID 格式是否正确
+func UUID(val string) bool { return uuid.Validate(val) == nil }

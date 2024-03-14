@@ -7,7 +7,10 @@
 // [web.filter]: https://pkg.go.dev/github.com/issue9/web#Filter
 package validator
 
-import "reflect"
+import (
+	"encoding/json"
+	"reflect"
+)
 
 // And 以与的形式串联多个验证器函数
 func And[T any](v ...func(T) bool) func(T) bool {
@@ -48,3 +51,5 @@ func Equal[T comparable](v T) func(T) bool {
 func NilOr[T any](v func(T) bool) func(T) bool {
 	return Or(func(v T) bool { return reflect.ValueOf(v).IsNil() }, v)
 }
+
+func JSON(val []byte) bool { return json.Valid(val) }
