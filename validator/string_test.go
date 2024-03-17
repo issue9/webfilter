@@ -21,6 +21,7 @@ func TestHexColor(t *testing.T) {
 
 	a.False(HexColor("#2244"))
 	a.False(HexColor("#hhh"))
+	a.False(HexColor("ffff"))
 	a.False(HexColor("#asdf"))
 	a.False(HexColor("#ffff"))
 }

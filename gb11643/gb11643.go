@@ -30,7 +30,7 @@ type GB11643 struct {
 	Raw    string    // 原始数据
 	Region string    // 区域代码
 	Date   time.Time // 出生年月
-	IsMale bool      // 是否为男姓，否为女生
+	IsMale bool      // true 为男姓，false 为女生
 }
 
 // Parse 分析身份证信息

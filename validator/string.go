@@ -83,11 +83,7 @@ func Luhn(val string) bool { return luhn.IsValid([]byte(val)) }
 
 // HexColor 判断一个字符串是否为合法的 16 进制颜色表示法
 func HexColor(val string) bool {
-	if len(val) != 4 && len(val) != 7 {
-		return false
-	}
-
-	if val[0] != '#' {
+	if (len(val) != 4 && len(val) != 7) || val[0] != '#' {
 		return false
 	}
 
