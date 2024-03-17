@@ -10,8 +10,20 @@ import (
 	"encoding/hex"
 	"strings"
 	"unicode"
+
+	"github.com/issue9/web/filter"
 )
 
+// S 同 [filter.S]
+func S[T any](f ...func(*T)) filter.Rule[T] { return filter.S(f...) }
+
+// SS 同 [filter.SS]
+func SS[S ~[]T, T any](f ...func(*T)) filter.Rule[S] { return filter.SS[S](f...) }
+
+// MS 同 [filter.MS]
+func MS[M ~map[K]V, K comparable, V any](f func(*V)) filter.Rule[M] { return filter.MS[M](f) }
+
+// Sanitizers 将多个修正函数合并为一个
 func Sanitizers[T any](f ...func(*T)) func(*T) {
 	return func(v *T) {
 		for _, ss := range f {

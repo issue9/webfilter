@@ -10,7 +10,23 @@ package validator
 import (
 	"encoding/json"
 	"reflect"
+
+	"github.com/issue9/web"
+	"github.com/issue9/web/filter"
 )
+
+// V 同 [filter.V]
+func V[T any](v func(T) bool, msg web.LocaleStringer) filter.Rule[T] { return filter.V(v, msg) }
+
+// SV 同 [filter.SV]
+func SV[S ~[]T, T any](v func(T) bool, msg web.LocaleStringer) filter.Rule[S] {
+	return filter.SV[S](v, msg)
+}
+
+// MV 同 [filter.MV]
+func MV[M ~map[K]V, K comparable, V any](v func(V) bool, msg web.LocaleStringer) filter.Rule[M] {
+	return filter.MV[M](v, msg)
+}
 
 // And 以与的形式串联多个验证器函数
 func And[T any](v ...func(T) bool) func(T) bool {
