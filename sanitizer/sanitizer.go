@@ -6,6 +6,8 @@
 package sanitizer
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"strings"
 	"unicode"
 )
@@ -32,3 +34,9 @@ func TrimRight(v *string) {
 func Upper(v *string) { *v = strings.ToUpper(*v) }
 
 func Lower(v *string) { *v = strings.ToLower(*v) }
+
+func MD5(v *string) {
+	h := md5.New()
+	h.Write([]byte(*v))
+	*v = hex.EncodeToString(h.Sum(nil))
+}
