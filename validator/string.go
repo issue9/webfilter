@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+
 	"github.com/issue9/webfilter/gb11643"
 	"github.com/issue9/webfilter/gb32100"
 	"github.com/issue9/webfilter/internal/isbn"
@@ -48,6 +49,9 @@ func IP6(val string) bool {
 	return err == nil && ip.Is6()
 }
 
+// IP 判断是否 IP 地址
+//
+// 同时支持 [IP4] 和 [IP6]
 func IP(val string) bool {
 	_, err := netip.ParseAddr(val)
 	return err == nil
@@ -55,7 +59,7 @@ func IP(val string) bool {
 
 // ISBN 判断是否为合法的 [ISBN] 串号
 //
-// 可以同时判断 ISBN10 和 ISBN13
+// 可以同时判断 [ISBN10] 和 [ISBN13]
 //
 // [ISBN]: https://zh.wikipedia.org/wiki/%E5%9B%BD%E9%99%85%E6%A0%87%E5%87%86%E4%B9%A6%E5%8F%B7
 func ISBN(val string) bool { return isbn.IsValid([]byte(val)) }
@@ -132,11 +136,6 @@ func Alpha(s string) bool {
 	return true
 }
 
-// EmptyOr 空字符串或是非空的情况下满足 v 的条件
-func EmptyOr(v func(string) bool) func(string) bool {
-	return Or(func(s string) bool { return s == "" }, v)
-}
-
 // CNMobile 验证中国大陆的手机号码
 func CNMobile(val string) bool {
 	// 可选的 0,86,086,+86
@@ -175,3 +174,6 @@ func Digit(val string) bool {
 
 // UUID 验证 UUID 格式是否正确
 func UUID(val string) bool { return uuid.Validate(val) == nil }
+
+// Empty 字符串是否为空
+func Empty(val string) bool { return val == "" }

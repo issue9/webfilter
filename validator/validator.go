@@ -53,19 +53,18 @@ func Or[T any](v ...func(T) bool) func(T) bool {
 }
 
 // Not 验证器的取反
-func Not[T any](v func(T) bool) func(T) bool {
-	return func(val T) bool { return !v(val) }
-}
+func Not[T any](v func(T) bool) func(T) bool { return func(val T) bool { return !v(val) } }
 
+// Zero 是否为零值
+//
+// 采用 [reflect.Value.IsZero] 判断。
 func Zero[T any](v T) bool { return reflect.ValueOf(v).IsZero() }
 
 // Equal 生成判断值是否等于 v 的验证器
-func Equal[T comparable](v T) func(T) bool {
-	return func(t T) bool { return t == v }
-}
+func Equal[T comparable](v T) func(T) bool { return func(t T) bool { return t == v } }
 
-func NilOr[T any](v func(T) bool) func(T) bool {
-	return Or(func(v T) bool { return reflect.ValueOf(v).IsNil() }, v)
-}
+// Nil 是否为 nil
+func Nil[T any](v T) bool { return reflect.ValueOf(v).IsNil() }
 
+// JSON 验证是否为正确的 JSON 内容
 func JSON(val []byte) bool { return json.Valid(val) }
