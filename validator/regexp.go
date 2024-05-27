@@ -32,3 +32,9 @@ func CNTel(val string) bool { return CNMobile(val) || CNPhone(val) }
 func Match(exp *regexp.Regexp) func(string) bool {
 	return func(val string) bool { return exp.MatchString(val) }
 }
+
+// Regexp 是否为一个正确的正则表达式
+func Regexp(v string) bool {
+	_, err := regexp.Compile(v)
+	return err == nil
+}
