@@ -5,7 +5,11 @@
 // Package gb32100 GB32100-2015 统一信用代码校验
 package gb32100
 
-import "github.com/issue9/web/locales"
+import (
+	"maps"
+
+	"github.com/issue9/web/locales"
+)
 
 var (
 	ministries = map[byte]string{
@@ -115,3 +119,9 @@ func (g *GB32100) MinistryName() string { return ministries[g.Ministry] }
 
 // TypeName 返回登记管理部门下的类型名称
 func (g *GB32100) TypeName() string { return types[g.Ministry][g.Type] }
+
+// Ministries 所有可用的登记管理部分
+func Ministries() map[byte]string { return maps.Clone(ministries) }
+
+// MinistryTypes 指定管理部分下的可用分类信息
+func MinistryTypes(ministry byte) map[byte]string { return maps.Clone(types[ministry]) }
