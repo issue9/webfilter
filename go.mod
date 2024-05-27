@@ -7,6 +7,7 @@ require (
 	github.com/issue9/assert/v4 v4.3.0
 	github.com/issue9/version v1.0.8
 	github.com/issue9/web v0.96.1
+	golang.org/x/text v0.15.0
 )
 
 require (
@@ -28,6 +29,5 @@ require (
 	golang.org/x/mod v0.17.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
 	golang.org/x/sys v0.20.0 // indirect
-	golang.org/x/text v0.15.0 // indirect
 	golang.org/x/xerrors v0.0.0-20231012003039-104605ab7028 // indirect
 )

@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	"golang.org/x/text/language"
 
 	"github.com/issue9/webfilter/gb11643"
 	"github.com/issue9/webfilter/gb32100"
@@ -177,3 +178,9 @@ func UUID(val string) bool { return uuid.Validate(val) == nil }
 
 // Empty 字符串是否为空
 func Empty(val string) bool { return val == "" }
+
+// LanguageTag 是否能解析为 [language.Tag] 变量
+func LanguageTag(val string) bool {
+	_, err := language.Parse(val)
+	return err == nil
+}
