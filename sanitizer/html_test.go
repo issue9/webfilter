@@ -107,5 +107,5 @@ func TestEscapeScript(t *testing.T) {
 
 	v = "<p>123</p><script>var x = 5</script>"
 	EscapeScript(&v)
-	a.Equal(v, "<p>123</p>&lt;script&gt;<pre>;var x = 5</pre>&lt;/script&gt;")
+	a.Equal(v, "<p>123</p>&lt;script&gt;<pre>var x = 5</pre>&lt;/script&gt;")
 }
