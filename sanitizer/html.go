@@ -11,7 +11,10 @@ import (
 	"unicode"
 )
 
-var nl2brReplacer = strings.NewReplacer("\r\n", "<br />", "\n", "<br />")
+var nl2brReplacer = strings.NewReplacer(
+	"\r\n", "<br />",
+	"\n", "<br />",
+)
 
 // NL2BR 将换行符转换为 <br />
 func NL2BR(v *string) { *v = nl2brReplacer.Replace(*v) }
@@ -58,9 +61,9 @@ LOOP:
 	*v = b.String()
 }
 
-func Escape(v *string) { *v = html.EscapeString(*v) }
+func EscapeHTML(v *string) { *v = html.EscapeString(*v) }
 
-func Unescape(v *string) { *v = html.UnescapeString(*v) }
+func UnescapeHTML(v *string) { *v = html.UnescapeString(*v) }
 
 // NL2P 将换行符转换为 <p> 包含的元素
 //
@@ -91,3 +94,11 @@ var p2nlReplacer = strings.NewReplacer(
 
 // P2NL 将 <p> 包含的元素替换为换行符
 func P2NL(v *string) { *v = p2nlReplacer.Replace(*v) }
+
+var scriptReplacer = strings.NewReplacer(
+	"<script>", "&lt;script&gt;<pre>",
+	"</script>", "</pre>&lt;/script&gt;",
+)
+
+// EscapeScript 仅转换 HTML 中 script 标签内的内容
+func EscapeScript(v *string) { *v = scriptReplacer.Replace(*v) }

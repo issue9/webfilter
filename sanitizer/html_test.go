@@ -97,3 +97,15 @@ func TestP2NL(t *testing.T) {
 	P2NL(&v)
 	a.Equal(v, "l1\n")
 }
+
+func TestEscapeScript(t *testing.T) {
+	a := assert.New(t, false)
+
+	v := "<p>123</p>"
+	EscapeScript(&v)
+	a.Equal(v, "<p>123</p>")
+
+	v = "<p>123</p><script>var x = 5</script>"
+	EscapeScript(&v)
+	a.Equal(v, "<p>123</p>&lt;script&gt;<pre>;var x = 5</pre>&lt;/script&gt;")
+}
