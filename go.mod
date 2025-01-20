@@ -5,6 +5,7 @@ go 1.23.0
 require (
 	github.com/google/uuid v1.6.0
 	github.com/issue9/assert/v4 v4.3.1
+	github.com/issue9/rands/v3 v3.1.0
 	github.com/issue9/version v1.0.8
 	github.com/issue9/web v0.100.9
 	golang.org/x/text v0.21.0

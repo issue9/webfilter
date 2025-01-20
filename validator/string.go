@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022-2024 caixw
+// SPDX-FileCopyrightText: 2022-2025 caixw
 //
 // SPDX-License-Identifier: MIT
 
@@ -16,8 +16,8 @@ import (
 	"github.com/issue9/webfilter/gb11643"
 	"github.com/issue9/webfilter/gb32100"
 	"github.com/issue9/webfilter/internal/isbn"
-	"github.com/issue9/webfilter/internal/strength"
 	"github.com/issue9/webfilter/luhn"
+	"github.com/issue9/webfilter/strength"
 )
 
 // Strength 声明密码强度的验证对象
@@ -26,8 +26,11 @@ import (
 // upper 对大写字符的最小要求；
 // lower 对小写字符的最小要求；
 // punct 对符号的最小要求；
-func Strength(length, upper, lower, punct int) func(string) bool {
-	return strength.New(length, upper, lower, punct)
+// num 对数字的最小要求
+//
+// 详细文档可参考 [strength.Strength]。
+func Strength(length, upper, lower, punct, num int8) func(string) bool {
+	return (&strength.Strength{Length: length, Upper: upper, Lower: lower, Punct: punct, Number: num}).Valid
 }
 
 func URL(val string) bool {
